@@ -2,15 +2,15 @@
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
 import { setIsSidebarCollapsed } from '@/state';
-import { Briefcase, Home, LockIcon, LucideIcon, Search, Settings, User, Users, X } from 'lucide-react';
+import { AlertCircle, AlertOctagon, AlertTriangle, Briefcase, ChevronDown, ChevronUp, Home, Layers3, LockIcon, LucideIcon, Search, Settings, ShieldAlert, User, Users, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Sidebar = () => {
-    //const {showProjects, setShowProjects} = useState(true);
-    //const {showPriority, setShowPriority} = useState(true);
+    const [showProjects, setShowProjects] = useState(true);
+    const [showPriority, setShowPriority] = useState(true);
 
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector(
@@ -51,11 +51,44 @@ const Sidebar = () => {
         <nav className="z-10 w-full">
           <SidebarLink icon={Home} label="Kennedy's Home" href="/" />
           <SidebarLink icon={Briefcase} label="Timeline" href="/timeline" />
-          <SidebarLink icon={Search} label="Search" href="/search" />
+          <SidebarLink icon={Search} label="Search Kennedy" href="/search" />
           <SidebarLink icon={Settings} label="Settings" href="/settings" />
           <SidebarLink icon={User} label="Users" href="/users" />
           <SidebarLink icon={Users} label="Kennedy's Teams" href="/teams" />
         </nav>
+
+        {/* PROJECTS LINKS* */}
+
+        <button onClick={() => setShowProjects((prev) => !prev)} 
+        className='flex w-full items-center justify-between px-8 py-3 text-gray-500'>
+            <span className=''>Kennedy's Projects</span>
+            {showProjects ? (
+                <ChevronUp className='h-5 w-5' />
+            ) : <ChevronDown className='h-5 w-5' />}
+        </button>
+        {/* PROJECTS LIST */}
+
+
+
+        {/* PRIORITEIS LINKS */}
+
+        <button onClick={() => setShowPriority((prev) => !prev)} 
+        className='flex w-full items-center justify-between px-8 py-3 text-gray-500'>
+            <span className=''>Kennedy's Priority</span>
+            {showPriority ? (
+                <ChevronUp className='h-5 w-5' />
+            ) : <ChevronDown className='h-5 w-5' />}
+        </button>
+        {showPriority && (
+            <>
+            <SidebarLink icon={AlertCircle} label="Kennedy's Urgent" href="/priority/urgent" />
+            <SidebarLink icon={ShieldAlert} label="Kennedy's High" href="/priority/high" />
+            <SidebarLink icon={AlertTriangle} label="Kennedy's Medium" href="/priority/medium" />
+            <SidebarLink icon={AlertOctagon} label="Kennedy's Low" href="/priority/low" />
+            <SidebarLink icon={Layers3} label="Kennedy's backlog" href="/prioritu/backlog" />
+            </>
+        )}
+
     </div>
   </div>
 };
@@ -64,23 +97,16 @@ interface SidebarlinkProps {
     href: string;
     icon: LucideIcon;
     label: string;
-    //isCollapsed: boolean;
 }
 
 const SidebarLink = ({
     href,
     icon: Icon,
     label,
-    //isCollapsed
 }: SidebarlinkProps) => {
     const pathname = usePathname();
     const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
-    const screenWidth = window.innerWidth;
 
-    const dispatch = useAppDispatch();
-    const isSidebarCollapsed = useAppSelector(
-        (state) => state.global.isSidebarCollapsed,
-    );
 
     return (
         <Link href={href} className='w-full'>
