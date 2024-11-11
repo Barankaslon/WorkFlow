@@ -46,8 +46,8 @@ const HomePage = () => {
 
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
-  if (tasksLoading || isProjectsLoading) return <div>Loading..</div>;
-  if (tasksError || !tasks || !projects) return <div>Error fetching data</div>;
+  if (tasksLoading || isProjectsLoading) return <div>Kennedy is checking..</div>;
+  if (tasksError || !tasks || !projects) return <div>Kennedy says: You are Fu...ed</div>;
 
   const priorityCount = tasks.reduce(
     (acc: Record<string, number>, task: Task) => {
@@ -97,7 +97,7 @@ const HomePage = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Task Priority Distribution
+            Kennedy's Task Priority Distribution
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={taskDistribution}>
@@ -120,7 +120,7 @@ const HomePage = () => {
         </div>
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Project Status
+            Kennedy's Status
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -139,7 +139,7 @@ const HomePage = () => {
         </div>
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary md:col-span-2">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Your Tasks
+            Kennedy's Tasks
           </h3>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
