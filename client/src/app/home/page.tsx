@@ -97,7 +97,7 @@ const HomePage = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Kennedy Task Priority Distribution
+            Kennedy's Task Priority Distribution
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={taskDistribution}>
@@ -120,7 +120,7 @@ const HomePage = () => {
         </div>
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Kennedy Status
+            Kennedy's Status
           </h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
@@ -139,7 +139,7 @@ const HomePage = () => {
         </div>
         <div className="rounded-lg bg-white p-4 shadow dark:bg-dark-secondary md:col-span-2">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
-            Kennedy Tasks
+            Kennedy's Tasks
           </h3>
           <div style={{ height: 400, width: "100%" }}>
             <DataGrid
